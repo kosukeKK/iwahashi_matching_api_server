@@ -1,0 +1,13 @@
+{
+  "name": "iwahashi_matching_api_server",
+  "version": "1.0.0",
+  "description": "api server of matching apps",
+  "main": "app.js",
+  "repository": "git@github.com:kosukeKK/iwahashi_matching_api_server.git",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mocha": "^5.2.0"
+  }
+}
