@@ -3,13 +3,12 @@
 class Validater {
     static isValid(key, val) {
         const validateList = {
-            id: this.isInteger
+            id: this.unsignedInteger(key, val)
         };
-        const validateFunction = validateList[key];
-        return (validateFunction === undefined) ? "not exist key" : validateFunction(val);
+        return (validateList.hasOwnProperty(key)) ? validateList[key] : "not exist key.";
     }
-    static isInteger(val) {
-       if(isNaN(val)) return "id should be integer";
+    static unsignedInteger(key, val) {
+       if(isNaN(val) || val.length >= 15) return key + " should be integer and less than or equal to 15.";
     }
 }
-exports.default = Validater;
+exports.Validater = Validater;
