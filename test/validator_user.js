@@ -13,19 +13,27 @@ describe("#isValid", () => {
             ]
         }
     };
-    Object.keys(fastList).forEach(key => {
-        it(key + " should be empty string", () => {
-            fastList[key].ok.forEach(ok => {
-                assert.equal(Validator.isValid(key, ok.req), ok.res)
-            })
-        });
-        it(key + " should be validate error", () => {
-            fastList[key].ng.forEach(ng => {
-                assert.equal(Validator.isValid(key, ng.req), ng.res)
-            })
+    describe("when correct format", () => {
+        Object.keys(fastList).forEach(key => {
+            it(key + " should be empty string", () => {
+                fastList[key].ok.forEach(ok => {
+                    assert.equal(Validator.isValid(key, ok.req), ok.res)
+                })
+            });
+        })
+    });
+    describe("when incorrect format", () => {
+        Object.keys(fastList).forEach(key => {
+            it(key + " should be validate error", () => {
+                fastList[key].ng.forEach(ng => {
+                    assert.equal(Validator.isValid(key, ng.req), ng.res)
+                })
+            });
         });
     });
-    it("none key should be validate error", () => {
-        assert.equal(Validator.isValid("none_key", ""), "not exist key.")
+    describe("when has not expected key", () => {
+        it("has not expected key should be validate error", () => {
+            assert.equal(Validator.isValid("none_key", ""), "none_key is not exist key.")
+        });
     });
 });
