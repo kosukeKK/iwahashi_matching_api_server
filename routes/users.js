@@ -2,7 +2,6 @@
 const express = require("express"),
     Users     = require("../controllers/users").UsersController,
     usersRouter = express.Router({mergeParams: true});
-
 // Search
 usersRouter.route("/search").get((req, res) => {
     const users = new Users();
