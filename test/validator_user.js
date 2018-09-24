@@ -1,3 +1,4 @@
+"use strict";
 const assert = require('assert'),
     Validator = require("../validator/user").Validater;
 

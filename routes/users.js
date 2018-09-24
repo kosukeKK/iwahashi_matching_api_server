@@ -1,30 +1,20 @@
 "use strict";
 const express = require("express"),
-    Validator = require("../validator/user").Validater,
+    Users     = require("../controllers/users").UsersController,
     usersRouter = express.Router({mergeParams: true});
 
+// Search
 usersRouter.route("/search").get((req, res) => {
-    const errors = validate(req.query);
-    if (errors !== "") {
-        res.status(400).json({error: errors})
-    } else {
-        res.status(200).json({success: "unko"})
-    }
+    const users = new Users();
+    const responseData = users.search(req.query);
+    res.status(responseData.statusCode).json({error: responseData.value});
 });
 
+// Show
 usersRouter.route("/:id").get((req, res) => {
     res.status(200).json({aa: req.params.id})
 });
 
-const validate = (query) => {
-    let errors = "";
-    Object.keys(query).forEach((q) => {
-        const errorMessage = Validator.isValid(q, query[q]);
-        if (errorMessage !== undefined) errors += errorMessage
-    });
-    return errors;
-
-};
 
 exports.router = () => {
     return usersRouter;
