@@ -4,9 +4,24 @@ const Validator = require("../validator/user").Validater;
 exports.UsersController = class UsersController {
     search(query) {
         const errors = validate(query);
-        if (errors !== "") return {statusCode: 400, value: errors};
-        return {statusCode: 200, value: undefined};
+        return (errors !== "") ?  {statusCode: 400, value: errors} : {statusCode: 200, value: 123};
         // response
+    }
+
+    // insert user for database.
+    // params query Object
+    // return Object
+    create(query) {
+        const errors = validate(query);
+        return (errors !== "") ? {statusCode: 400, value: errors} : {statusCode: 200, value: undefined};
+    }
+
+    update() {
+        // User Update
+    }
+
+    destroy() {
+        // User destroy
     }
 };
 
